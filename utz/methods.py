@@ -1,4 +1,3 @@
-from functools import cached_property
 from inspect import isfunction
 
 
@@ -23,9 +22,17 @@ class Methods:
                 self.smethods.add(k)
             elif isinstance(v, property):
                 self.properties.add(k)
-            elif isinstance(v, cached_property):
-                self.cached_properties.add(k)
             else:
-                self.smembers.add(k)
+                found = False
+                try:
+                    from functools import cached_property
+                    if isinstance(v, cached_property):
+                        self.cached_properties.add(k)
+                        found = True
+                except ImportError:
+                    pass
+
+                if not found:
+                    self.smembers.add(k)
 
         self.ivars = set(k for k in dir(o) if not k.startswith('_')).difference(klzm.keys())
