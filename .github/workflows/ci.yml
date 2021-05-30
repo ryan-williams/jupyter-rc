@@ -3,6 +3,9 @@ on: push
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.7,3.8]
     steps:
       - uses: actions/checkout@v2
         with:
@@ -11,7 +14,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.8.6'
+          python-version: ${{ matrix.python-version }}
       - name: Fetch submodule tags
         run: |
           cd utz/tests/data/gsmo
@@ -19,7 +22,7 @@ jobs:
       - name: Install test dependencies
         run: |
           python -m pip install --upgrade pip wheel
-          python -m pip install utz[setup]==0.3.16  # bootstrap setup() helper
+          python -m pip install utz[setup]==0.3.17  # bootstrap setup() helper
           pip install -e .[setup,test]
           python -c 'import utz; print("utz version: %s, file: %s" % (utz.__version__, utz.__file__))'
       - name: Test
