@@ -17,7 +17,7 @@ from .imports import _try
 import datetime
 from datetime import datetime as dt, date
 fromtimestamp = dt.fromtimestamp
-fromisoformat = dt.fromisoformat
+with _try: fromisoformat = dt.fromisoformat
 with _try: from dateutil.parser import parse
 with _try: from pytz import UTC
 from .time import now, today
