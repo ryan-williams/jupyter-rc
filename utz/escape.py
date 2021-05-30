@@ -36,7 +36,7 @@ def split(s, ch, max=0):
             if max == n:
                 break
         elif span:
-            raise RuntimeError(f'Unexpected end to span {s[start:end]}: {span}; {s=}, {idx=}, {m=}')
+            raise RuntimeError(f'Unexpected end to span {s[start:end]}: {span}; s={s}, idx={idx}, m={m}')
         assert idx == end
     nxt += s[idx:]
     strs.append(nxt)
