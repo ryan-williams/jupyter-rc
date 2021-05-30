@@ -25,7 +25,7 @@ class Methods:
             else:
                 found = False
                 try:
-                    from functools import cached_property
+                    from cached_property import cached_property
                     if isinstance(v, cached_property):
                         self.cached_properties.add(k)
                         found = True

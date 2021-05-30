@@ -1,6 +1,7 @@
 
-from functools import cached_property
+from cached_property import cached_property
 import pytest
+
 from utz import use
 
 

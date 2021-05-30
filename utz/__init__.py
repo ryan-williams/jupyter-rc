@@ -39,7 +39,6 @@ from configparser import ConfigParser
 import dataclasses
 from dataclasses import dataclass
 
-import functools
 try:
     # Python 3.8
     from functools import cached_property, singledispatchmethod

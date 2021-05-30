@@ -2,6 +2,7 @@ from utz.setup import setup
 
 setup(
     install_requires=[
+        "cached-property",
         "GitPython",
         "joblib",
         "pandas",
