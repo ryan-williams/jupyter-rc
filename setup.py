@@ -24,4 +24,5 @@ setup(
         ],
     },
     url="https://github.com/runsascoded/utz",
+    python_requires='>=3.6',
 )
