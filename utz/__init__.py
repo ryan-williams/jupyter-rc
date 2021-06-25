@@ -30,14 +30,17 @@ from .path import mkdir, mkpar
 import argparse
 from argparse import ArgumentParser
 
+import ast
+
 from base64 import b64decode, b64encode, b85decode, b85encode
 from .bases import b62, b64, b90
 
 import configparser
 from configparser import ConfigParser
 
-import dataclasses
-from dataclasses import dataclass
+with _try:
+    import dataclasses
+    from dataclasses import dataclass
 
 try:
     # Python 3.8
@@ -56,6 +59,9 @@ from glob import glob
 
 import hashlib
 from hashlib import md5, sha256
+
+import inspect
+from inspect import getfullargspec, ismodule, isclass, isfunction, isgeneratorfunction, isgenerator, iscoroutinefunction, iscoroutine, iscode, signature
 
 import io
 from io import BytesIO, StringIO
@@ -171,3 +177,9 @@ with _try: from scipy.sparse import spmatrix, coo_matrix, csr_matrix, csc_matrix
 from .version import git_version, pkg_version
 
 __version__ = pkg_version('utz')
+
+try:
+    import shlex
+    shlex_join = shlex.join
+except AttributeError:
+    from utz.shlex import join as shlex_join

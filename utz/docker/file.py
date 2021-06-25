@@ -169,7 +169,8 @@ class File(AbstractContextManager):
 
     def ENTRYPOINT(self, *args, shell=False):
         if shell:
-            self.write(f'ENTRYPOINT {shlex.join(args)}')
+            shlex_join = getattr(shlex, 'join', ' '.join)  # shlex.join only exists in Python ≥3.8
+            self.write(f'ENTRYPOINT {shlex_join(args)}')
         else:
             self.write(f'ENTRYPOINT {json.dumps(args)}')
 
